@@ -1,0 +1,153 @@
+<div class="container">
+  <div class="screen">
+    <div class="screen__content">
+      <!-- Logo Section -->
+      <div class="logo-container">
+        <a href="index.html" class="logo align-items-center">
+          <img src="assets/images/logos/booK.png" alt="Logo">
+        </a>
+      </div>
+
+      <div class="auth-container">
+        <div class="form-container">
+          <!-- Login Form -->
+          <form *ngIf="isLoginMode" [formGroup]="loginForm" (ngSubmit)="submit()" class="login">
+            <h2 class="d-lg-block text-center">Login</h2>
+            
+            <div class="login__field form-group">
+              <i class="login__icon fas fa-user"></i>
+              <input 
+                id="loginEmail" 
+                formControlName="email" 
+                type="email" 
+                class="login__input form-control" 
+                [class.error]="loginEmail?.invalid && loginEmail?.touched"
+                placeholder="User name / Email" 
+                required 
+              />
+              <div *ngIf="loginEmail?.invalid && loginEmail?.touched" class="error-message">
+                <small *ngIf="loginEmail?.errors?.['required']">Email is required</small>
+                <small *ngIf="loginEmail?.errors?.['email']">Please enter a valid email</small>
+              </div>
+            </div>
+            
+            <div class="login__field form-group">
+              <i class="login__icon fas fa-lock"></i>
+              <input 
+                id="loginPassword" 
+                formControlName="password" 
+                type="password" 
+                class="login__input form-control" 
+                [class.error]="loginPassword?.invalid && loginPassword?.touched"
+                placeholder="Password" 
+                required 
+              />
+              <div *ngIf="loginPassword?.invalid && loginPassword?.touched" class="error-message">
+                <small *ngIf="loginPassword?.errors?.['required']">Password is required</small>
+              </div>
+            </div>
+            
+            <button 
+              class="button login__submit btn btn-primary w-100" 
+              type="submit" 
+              [disabled]="isLoading"
+            >
+              <span class="button__text" *ngIf="!isLoading">Log In Now</span>
+              <span class="button__text" *ngIf="isLoading">
+                <i class="fas fa-spinner fa-spin"></i> Logging in...
+              </span>
+              <i class="button__icons fas fa-chevron-right" *ngIf="!isLoading"></i>
+            </button>
+            
+            <p class="toggle-auth">
+              Don't have an account? <a (click)="toggleMode()">Register here</a>
+            </p>
+          </form>
+
+          <!-- Register Form -->
+          <form *ngIf="!isLoginMode" [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()" class="login">
+            <h2>Register</h2>
+            
+            <div class="login__field form-group">
+              <i class="login__icon fas fa-user"></i>
+              <input 
+                id="registerUsername" 
+                formControlName="username" 
+                type="text" 
+                class="login__input form-control" 
+                [class.error]="registerUsername?.invalid && registerUsername?.touched"
+                placeholder="Username" 
+                required 
+              />
+              <div *ngIf="registerUsername?.invalid && registerUsername?.touched" class="error-message">
+                <small *ngIf="registerUsername?.errors?.['required']">Username is required</small>
+              </div>
+            </div>
+            
+            <div class="login__field form-group">
+              <i class="login__icon fas fa-envelope"></i>
+              <input 
+                id="registerEmail" 
+                formControlName="email" 
+                type="email" 
+                class="login__input form-control" 
+                [class.error]="registerEmail?.invalid && registerEmail?.touched"
+                placeholder="Email" 
+                required 
+              />
+              <div *ngIf="registerEmail?.invalid && registerEmail?.touched" class="error-message">
+                <small *ngIf="registerEmail?.errors?.['required']">Email is required</small>
+                <small *ngIf="registerEmail?.errors?.['email']">Please enter a valid email</small>
+              </div>
+            </div>
+            
+            <div class="login__field form-group">
+              <i class="login__icon fas fa-lock"></i>
+              <input 
+                id="registerPassword" 
+                formControlName="password" 
+                type="password" 
+                class="login__input form-control" 
+                [class.error]="registerPassword?.invalid && registerPassword?.touched"
+                placeholder="Password" 
+                required 
+              />
+              <div *ngIf="registerPassword?.invalid && registerPassword?.touched" class="error-message">
+                <small *ngIf="registerPassword?.errors?.['required']">Password is required</small>
+                <small *ngIf="registerPassword?.errors?.['minlength']">Password must be at least 6 characters</small>
+              </div>
+            </div>
+            
+            <button 
+              class="button login__submit btn btn-primary w-100" 
+              type="submit" 
+              [disabled]="isLoading"
+            >
+              <span class="button__text" *ngIf="!isLoading">Register</span>
+              <span class="button__text" *ngIf="isLoading">
+                <i class="fas fa-spinner fa-spin"></i> Registering...
+              </span>
+              <i class="button__icons fas fa-chevron-right" *ngIf="!isLoading"></i>
+            </button>
+            
+            <p class="toggle-auth">
+              Already have an account? <a (click)="toggleMode()">Login here</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Success Alert Modal -->
+<div class="alert-overlay" *ngIf="showSuccessAlert">
+  <div class="alert-modal">
+    <div class="alert-icon">
+      <i class="fas fa-check-circle"></i>
+    </div>
+    <h3>Success!</h3>
+    <p>{{ alertMessage }}</p>
+    <button class="alert-ok-btn" (click)="onAlertOkClick()">OK</button>
+  </div>
+</div>
