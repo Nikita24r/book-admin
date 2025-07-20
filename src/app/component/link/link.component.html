@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-body">
+  
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="mb-0">Links</h4>
+            <a class="btn btn-primary btn-sm" routerLink="add-link">Add Link</a>
+          </div>
+  
+          <div class="card p-3">
+            <div class="table-responsive">
+              <!-- Table Controls -->
+              <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+                <label class="form-label mb-0">
+                  Show
+                  <select class="form-select d-inline-block w-auto ms-1 me-1">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select>
+                  entries
+                </label>
+  
+                <input type="search" class="form-control form-control-sm w-auto" placeholder="Search">
+              </div>
+  
+              <!-- Table -->
+              <table class="table table-bordered table-hover table-sm align-middle">
+                <thead class="table-light">
+                    <tr>
+                      <th>#</th>
+                      <th>Title</th>
+                      <th>Description</th>
+                      <th>Link</th>
+                      <th class="text-center">Edit</th>
+                      <th class="text-center">Delete</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                    <tr *ngFor="let data of getData?.length ? (getData | paginate: { itemsPerPage: itemsPerPage, currentPage: p }) : []; let i = index">
+
+                        <td>{{ getSNo(i) }}</td>
+                        <td class="text-truncate">{{ data.title }}</td>
+                        <td class="text-truncate">{{ data.description }}</td>
+                        <td class="text-truncate">
+                          <a [href]="data.link" target="_blank">{{ data.link }}</a>
+                        </td>
+                        <td class="text-center">
+                          <a class="btn btn-success btn-sm" [routerLink]="['edit-link', data._id]">Edit</a>
+                        </td>
+                        <td class="text-center">
+                          <div class="d-flex justify-content-center gap-2 flex-nowrap">
+                            <button class="btn btn-danger btn-sm" (click)="onDelete(data._id)">Delete</button>
+                          </div>
+                        </td>
+                      </tr>
+                      
+                </tbody>
+              </table>
+  
+              <!-- Footer -->
+              <div class="d-flex justify-content-between align-items-center mt-2">
+                <small class="text-muted">Showing 1 to {{ itemsPerPage }} of {{ getData?.length }} entries</small>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  

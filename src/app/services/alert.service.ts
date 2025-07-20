@@ -15,7 +15,6 @@ const notifier = new AWN(globalOptions)
 })
 export class AlertService {
   constructor() {}
-
   successToast(msg) {
     notifier.success(msg, 'Success', globalOptions)
   }

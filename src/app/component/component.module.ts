@@ -9,6 +9,9 @@ import { ComponentsRoutes } from './component.routing';
 import { TableComponent } from "./table/table.component";
 import { AddPoemComponent } from './add-poem/add-poem.component';
 import { PoemComponent, TruncatePipe, ShortenUrlPipe } from './poem/poem.component';
+import { LinkComponent } from './link/link.component';
+import { AddLinkComponent } from './add-link/add-link.component';
+import { EditLinkComponent } from './edit-link/edit-link.component';
 
 @NgModule({
   imports: [
@@ -16,6 +19,9 @@ import { PoemComponent, TruncatePipe, ShortenUrlPipe } from './poem/poem.compone
     CommonModule,
     RouterModule.forChild(ComponentsRoutes),
     FormsModule,
+    AddLinkComponent,
+    LinkComponent,
+    EditLinkComponent,
     ReactiveFormsModule,
     NgbModule,
     TableComponent,
@@ -25,7 +31,7 @@ import { PoemComponent, TruncatePipe, ShortenUrlPipe } from './poem/poem.compone
     AddPoemComponent,
     PoemComponent,
     TruncatePipe,
-    ShortenUrlPipe
+    ShortenUrlPipe,
   ],
 })
 export class ComponentsModule { }

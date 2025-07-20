@@ -34,4 +34,12 @@ export const ROUTES: RouteInfo[] = [
     extralink: false,
     submenu: []
   },
+  {
+    path: '/component/link',
+    title: 'Links',
+    icon: 'bi bi-suit-spade',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
 ];

@@ -17,10 +17,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": [
-              "ng-apexcharts",
-              "apexcharts"
-            ],
+             "allowedCommonJsDependencies": [
+                "lodash"
+             ],
             "outputPath": "dist/elite-angular-lite",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -100,6 +99,7 @@
             "styles": [
               "src/styles.scss"
             ],
+            
             "scripts": []
           }
         }
